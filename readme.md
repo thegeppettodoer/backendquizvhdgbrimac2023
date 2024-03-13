@@ -1,4 +1,16 @@
+##### Autor: Victor Hugo David GarciaB
+
+##### crear dynamo local:
+% java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -port 9000        
+
 base url    https://swapi-api.hbtn.io/api/
+
+
+
+
+
+
+
 
 
 ________________________________________________________
@@ -182,6 +194,7 @@ result:
 }
 
 <!-- comandos para crear tablas en dynamo db localmente , no te olvides el port-->
+ <!--crear tabla  -->
 
 aws dynamodb create-table \
 --table-name Planetas \
@@ -196,9 +209,7 @@ aws dynamodb create-table \
 
 <!-- select   planetas -->
  
-  <!-- 
-   --> 
-
+ 
 <!-- insertar registro  a planetas -->
  
  aws dynamodb put-item \
