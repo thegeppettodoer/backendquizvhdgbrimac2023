@@ -3,11 +3,13 @@ import express, { Request, Response, NextFunction } from "express";
 import serverless from "serverless-http";
 import { getAllPlanets } from "./services/planetsService";
 import { getPlanetsFromSWAPI } from '../src/services/swapiService';
-import  {createTable}  from "./services/createPlanetasService";
+import { createTable } from "./services/createPlanetasService";
+import { insertPlanet } from "./services/insertPlanetasFromSwapi";
+import { Planet } from "./types/planetas";
 
 
 const app = express();
-const PORT_SERVER = process.env.PORT_SERVER || 8000; // Puerto predeterminado o 8000 si no está definido
+const PORT_SERVER = process.env.PORT_SERVER || 8000;  
 app.listen(PORT_SERVER, () => {
   console.log(`Servidor escuchando en el puerto ${PORT_SERVER}`);
 });
@@ -22,7 +24,7 @@ createTable()
   });
 
 
-// Ruta para obtener todos los planetas
+// ruta /planetas devuelve los registros de la tabla Planetas
 app.get("/planetas", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const planetas = await getAllPlanets(); // Cambio en la llamada a la función
@@ -33,9 +35,25 @@ app.get("/planetas", async (req: Request, res: Response, next: NextFunction) => 
   }
 });
 
+// ruta /addplanetesfromswapi carga todos los planetas de swapi luego los inserta a la base de datos dynamodb a tabla Planetas
 app.post("/addplanetesfromswapi", async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const planets = await getPlanetsFromSWAPI();
+    const planets: Planet[] = await getPlanetsFromSWAPI();
+    let count: number = 0;
+
+    for (const planet of planets) {
+      console.log("Planet name:", planet.name);  
+      if (planet.name && planet.rotation_period && planet.orbital_period && planet.diameter && planet.climate && planet.gravity && planet.terrain && planet.surface_water && planet.population && planet.residents && planet.films && planet.created && planet.edited && planet.url) {
+        count = count + 1;
+        let planetfix = planet;
+        planetfix.id = count.toString();
+        await insertPlanet(planetfix);
+      } else {
+        console.error('Error: uno de los campos requeridos del planeta está vacío.');
+      }
+    }
+
+
     return res.status(200).json({
       planets,
     });
@@ -45,17 +63,12 @@ app.post("/addplanetesfromswapi", async (req: Request, res: Response, next: Next
     });
   }
 });
-// Ruta de ejemplo
-app.get("/path", (req: Request, res: Response, next: NextFunction) => {
-  return res.status(200).json({
-    message: "Hello from path!",
-  });
-});
+ 
 
 // Manejador para rutas no encontradas
 app.use((req: Request, res: Response, next: NextFunction) => {
   return res.status(404).json({
-    error: "Not Found",
+    error: "No se encuentra saludos by Victor Hugo David Garcia B",
   });
 });
 

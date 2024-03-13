@@ -184,7 +184,7 @@ result:
 <!-- comandos para crear tablas en dynamo db localmente , no te olvides el port-->
 
 aws dynamodb create-table \
---table-name planetas2 \
+--table-name Planetas \
 --attribute-definitions \
     AttributeName=id,AttributeType=S \
 --key-schema \
@@ -195,47 +195,16 @@ aws dynamodb create-table \
 
 
 <!-- select   planetas -->
-aws dynamodb scan \
-  --table-name planetas2 \
-  --endpoint-url http://localhost:9000
-
+ 
   <!-- 
-   -->
-aws dynamodb create-table \
-    --table-name planetas \
-    --attribute-definitions \
-        AttributeName=name,AttributeType=S \
-        AttributeName=rotation_period,AttributeType=S \
-        AttributeName=orbital_period,AttributeType=S \
-        AttributeName=diameter,AttributeType=S \
-        AttributeName=climate,AttributeType=S \
-        AttributeName=gravity,AttributeType=S \
-        AttributeName=terrain,AttributeType=S \
-        AttributeName=surface_water,AttributeType=S \
-        AttributeName=population,AttributeType=S \
-        AttributeName=residents,AttributeType=SS \
-        AttributeName=films,AttributeType=SS \
-        AttributeName=created,AttributeType=S \
-        AttributeName=edited,AttributeType=S \
-        AttributeName=url,AttributeType=S \
-    --key-schema \
-        AttributeName=name,KeyType=HASH \
-    --provisioned-throughput \
-        ReadCapacityUnits=5,WriteCapacityUnits=5 \
-    --endpoint-url http://localhost:9000
-
-
+   --> 
 
 <!-- insertar registro  a planetas -->
-aws dynamodb put-item \
-  --table-name planetas \
-  --item '{"id": {"S": "1"}, "nombre": {"S": "Tatooine"}, "clima": {"S": "Arid"}}' \
-  --endpoint-url http://localhost:9000
-<!--  -->
+ 
  aws dynamodb put-item \
-    --table-name planetas2 \
+    --table-name Planetas \
     --item '{
-        "id": {"S": "1"},
+        "id": {"S": "2"},
         "name": {"S": "Tierra"},
         "rotation_period": {"S": "24"},
         "orbital_period": {"S": "365.25"},
