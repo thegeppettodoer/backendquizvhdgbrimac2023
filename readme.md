@@ -6,7 +6,11 @@
 base url    https://swapi-api.hbtn.io/api/
 
 
-
+####  .env
+PORT_SERVER=9000
+URL=http://localhost:9000
+REGION=localhost
+URL_PLANETAS=https://swapi.py4e.com/api/planets
 
 
 
