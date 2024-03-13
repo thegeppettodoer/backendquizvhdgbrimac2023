@@ -1,0 +1,54 @@
+{
+  "name": "vhdgbbackendquiz",
+  "version": "1.0.0",
+  "description": "backend serverless node express con swapi express",
+  "main": "./src/index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "test-none": "mocha test/**/*.spec.ts -w --watch-files **/*.ts",
+    "test": "ts-mocha -p library/tsconfig.json library/test/**/*.ts",
+    "testdev": "ts-mocha test/**/*.spec.ts -w --watch-files **/*.ts",
+    "test1": "ts-node test/calculator.spec.ts",
+    "testx": "tsc && mocha dist/test/**/*.spec.js -w --watch-files **/*.ts",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/thegeppettodoer/backendquizvhdgbrimac2023.git"
+  },
+  "keywords": [
+    "backend",
+    "serverless",
+    "nodejs",
+    "express"
+  ],
+  "author": "victor h david garcia b",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thegeppettodoer/backendquizvhdgbrimac2023/issues"
+  },
+  "homepage": "https://github.com/thegeppettodoer/backendquizvhdgbrimac2023#readme",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.529.1",
+    "@serverless/typescript": "^3.38.0",
+    "aws-sdk": "^2.1576.0",
+    "axios": "^1.6.7",
+    "express": "^4.18.3",
+    "serverless-http": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.136",
+    "@types/chai": "^4.3.12",
+    "@types/expect": "^24.3.0",
+    "@types/express": "^4.17.21",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.26",
+    "@types/serverless": "^3.12.22",
+    "@types/sinon": "^17.0.3",
+    "chai": "^5.1.0",
+    "mocha": "^10.3.0",
+    "sinon": "^17.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
+  }
+}

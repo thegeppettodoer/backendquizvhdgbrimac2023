@@ -1,0 +1,6 @@
+name: aws-node-express-api
+org: serverlessinc
+description: Implementacion con Node Express API servicio con serverless framework
+keywords: aws, serverless, lambda, node, express , swapi
+repo: https://github.com/thegeppettodoer/backendquizvhdgbrimac2023
+license: MIT
